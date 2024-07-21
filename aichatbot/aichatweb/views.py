@@ -6,5 +6,5 @@ from django.shortcuts import render
 
 
 def homepage(request):
-    template = loader.get_template('index.html')
+    template = loader.get_template('base.html')
     return HttpResponse(template.render())
