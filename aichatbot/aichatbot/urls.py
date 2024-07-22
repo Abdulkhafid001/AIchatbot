@@ -4,5 +4,8 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     # app url config
-    path('', include('aichatweb.urls'))
+    path('aichat/', include('aichatweb.urls')),
+    # django rest framework app endpoint
+    path("restapi/", include('myrestapi.urls')),
+    path("", include('api.urls'))
 ]

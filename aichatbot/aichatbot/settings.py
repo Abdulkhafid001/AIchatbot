@@ -26,7 +26,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # app
-    'aichatweb'
+    'aichatweb',
+    # app
+    'myrestapi',
+    # app
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
