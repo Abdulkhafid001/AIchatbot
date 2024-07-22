@@ -9,5 +9,5 @@ def get_data(request):
     # get all database data
     items = Item.objects.all()
     # serialize to json
-    serializer = ItemSerializer()
-    return Response()
+    serializer = ItemSerializer(items)
+    return Response(serializer.data)
