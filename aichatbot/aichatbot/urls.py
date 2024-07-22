@@ -8,5 +8,4 @@ urlpatterns = [
     path('aichat/', include('aichatweb.urls')),
     # django rest framework app endpoint
     path("restapi/", include('myrestapi.urls')),
-    path("", include('api.urls'))
 ]
