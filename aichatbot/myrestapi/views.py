@@ -7,8 +7,6 @@ from rest_framework import permissions
 
 # using the DRF permissions class
 permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-
 class SnippetList(generics.ListCreateAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
@@ -22,8 +20,6 @@ class SnippetList(generics.ListCreateAPIView):
 
 # using the DRF permissions class
 permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-
 class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
