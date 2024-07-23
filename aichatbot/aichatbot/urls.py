@@ -9,3 +9,7 @@ urlpatterns = [
     # django rest framework app endpoint
     path('', include('myrestapi.urls')),
 ]
+
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls')),
+]
