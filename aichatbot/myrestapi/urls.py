@@ -1,16 +1,50 @@
-from django.urls import path
+from django.urls import include, path
 from rest_framework.urlpatterns import format_suffix_patterns
 from myrestapi import views
+from rest_framework import renderers
+from myrestapi.views import api_view, SnippetViewSet, UserViewSet
+from rest_framework.routers import DefaultRouter
+
+snippet_list = SnippetViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+snippet_detail = SnippetViewSet.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+snippet_highlight = SnippetViewSet.as_view({
+    'get': 'highlight'
+}, renderer_classes=[renderers.StaticHTMLRenderer])
+user_list = UserViewSet.as_view({
+    'get': 'list'
+})
+user_detail = UserViewSet.as_view({
+    'get': 'retrieve'
+})
+
 
 # API endpoints
-urlpatterns = [
-    path("snippets/", views.SnippetList.as_view(), name='snippet-list'),
-    path("snippets/<int:pk>/", views.SnippetDetail.as_view(), name="snippet-detail"),
-    path('users/', views.UserList.as_view(), name='user-list'),
-    path('users/<int:pk>/', views.UserDetail.as_view(), name='user-detail'),
+urlpatterns = format_suffix_patterns([
+    path("snippets/", name='snippet-list'),
+    path("snippets/<int:pk>/", name="snippet-detail"),
+    path('users/', name='user-list'),
+    path('users/<int:pk>/', name='user-detail'),
     path('', views.api_root),
-    path('snippets/<int:pk>/highlight/', views.SnippetHighlight.as_view(),name='snippet-highlight'),
-]
+    path('snippets/<int:pk>/highlight/', name='snippet-highlight'),
+])
 
 # append a set of format_suffix_patterns in addition to the existing URLs.
 urlpatterns = format_suffix_patterns(urlpatterns)
+
+# Create a router and register our ViewSets with it.
+router = DefaultRouter()
+router.register(r'snippets', views.SnippetViewSet, basename='snippet')
+router.register(r'users', views.UserViewSet, basename='user')
+
+# The API URLs are now determined automatically by the router.
+urlpatterns = [
+    path('', include(router.urls)),
+]
