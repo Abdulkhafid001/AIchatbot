@@ -4,7 +4,9 @@ from myrestapi import views
 
 urlpatterns = [
     path("snippets/", views.SnippetList.as_view()),
-    path("snippets/<int:pk>/", views.SnippetDetail.as_view())
+    path("snippets/<int:pk>/", views.SnippetDetail.as_view()),
+    path('users/', views.UserList.as_view()),
+    path('users/<int:pk>/', views.UserDetail.as_view()),
 ]
 
 # append a set of format_suffix_patterns in addition to the existing URLs.
