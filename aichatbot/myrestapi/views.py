@@ -4,9 +4,11 @@ from rest_framework import generics
 from django.contrib.auth.models import User
 from myrestapi.serializers import UserSerializer
 from rest_framework import permissions
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from myrestapi.permissions import IsOwnerOrReadOnly
 from rest_framework.reverse import reverse
+from rest_framework import renderers
 
 # using the DRF permissions class
 permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -42,6 +44,16 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 
+class SnippetHighlight(generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    renderer_classes = [renderers.StaticHTMLRenderer]
+
+    def get(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)
+
+
+# using the DRF reverse functionr to return fully-qualified URLs;
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
