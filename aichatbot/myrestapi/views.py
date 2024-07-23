@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from myrestapi.permissions import IsOwnerOrReadOnly
 from rest_framework.reverse import reverse
 from rest_framework import renderers
+from rest_framework import viewsets
 
 # using the DRF permissions class
 permission_classes = [permissions.IsAuthenticatedOrReadOnly]
@@ -34,12 +35,11 @@ class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SnippetSerializer
 
 
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
+# use the DRF viewsets to create a viewset that uses routers to reduce code for views
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `retrieve` actions.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
