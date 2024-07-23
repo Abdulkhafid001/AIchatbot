@@ -53,7 +53,7 @@ class SnippetHighlight(generics.GenericAPIView):
         return Response(snippet.highlighted)
 
 
-# using the DRF reverse functionr to return fully-qualified URLs;
+# using the DRF reverse function to return fully-qualified URLs;
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
