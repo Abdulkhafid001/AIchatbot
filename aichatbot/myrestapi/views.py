@@ -12,6 +12,7 @@ from rest_framework import renderers
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
+
 class SnippetViewSet(viewsets.ModelViewSet):
     """
     This ViewSet automatically provides `list`, `create`, `retrieve`,
@@ -40,4 +41,3 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
