@@ -8,7 +8,7 @@ urlpatterns = [
     # app url config
     path('aichat/', include('aichatweb.urls')),
     # django rest framework app endpoint
-    path('', include('myrestapi.urls')),
+    path('snippetsapi/', include('myrestapi.urls')),
 ] + debug_toolbar_urls()
 urlpatterns += [
     path('api-auth/', include('rest_framework.urls')),

@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # debug toolbar
     "debug_toolbar",
+    # blog API app
+    'blog',
     # app
     'aichatweb',
     # app
