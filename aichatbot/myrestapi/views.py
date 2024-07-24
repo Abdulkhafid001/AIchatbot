@@ -34,6 +34,9 @@ class SnippetViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
+
+
+
 # use the DRF viewsets to create a viewset that uses routers to reduce code for views
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
@@ -41,3 +44,11 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'snippets': reverse('snippet-list', request=request, format=format)
+    })
