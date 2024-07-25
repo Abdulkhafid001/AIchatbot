@@ -3,4 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-    return HttpResponse("blog app configured! proceed to build")
+    pass
+
+def get_all_blog_entries(request):
+    pass

@@ -4,7 +4,7 @@ from myrestapi import views
 from rest_framework import renderers
 from myrestapi.views import api_view, SnippetViewSet, UserViewSet
 from rest_framework.routers import DefaultRouter
-
+# 
 snippet_list = SnippetViewSet.as_view({
     'get': 'list',
     'post': 'create'

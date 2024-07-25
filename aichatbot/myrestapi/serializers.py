@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from myrestapi.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
+from myrestapi.models import Snippet
 from django.contrib.auth.models import User
 
 
