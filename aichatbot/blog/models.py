@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 
-class Blog_DB(models.Model):
+class BlogDb(models.Model):
     """ The base model for the blog API"""
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -32,6 +32,7 @@ class Blog_DB(models.Model):
         ]
 
     def save(self, *args, **kwargs):
+        # if empty slug, make title slug
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
