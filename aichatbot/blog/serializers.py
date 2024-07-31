@@ -5,6 +5,8 @@ from blog.models import BlogDb
 
 # create a class to serialize the blog model
 class BlogDbSerializer(serializers.ModelSerializer):
+    author = serializers.ReadOnlyField(source='author.username')
     class Meta:
         model = BlogDb
         fields = '__all__'
+        read_only_fields = ['author']   

@@ -30,6 +30,8 @@ class SnippetViewSet(viewsets.ModelViewSet):
         snippet = self.get_object()
         return Response(snippet.highlighted)
 
+
+    # always called on the serializer when it is created
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
