@@ -38,7 +38,7 @@ urlpatterns = format_suffix_patterns([
     path("snippets/<int:pk>/", snippet_detail, name="snippet-detail"),
     path('users/', user_list, name='user-list'),
     path('users/<int:pk>/', user_detail, name='user-detail'),
-    path('', views.api_root),
+    # path('', views.api_root),
     path('snippets/<int:pk>/highlight/',
          snippet_highlight, name='snippet-highlight'),
 ])

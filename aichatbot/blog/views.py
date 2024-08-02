@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework import generics
 
 # Create your views here.
+
+
 @api_view(['GET'])
 def home(request, format=None):
     return Response()
@@ -15,10 +17,7 @@ def home(request, format=None):
 # using generics viewset
 class BlogList(generics.ListCreateAPIView):
     queryset = BlogDb.objects.all()
-    serializer_class = BlogDbSerializer
+    serializer = BlogDbSerializer()
+    # return Response(serializer.data)
 
-    # fucntion to list blog entries
-    def list(self, request):
-        queryset = self.get_queryset()
-        serialiazer = BlogDbSerializer(queryset, many=True)
-        return Response(serialiazer.data)
+    # function to list blog entries
