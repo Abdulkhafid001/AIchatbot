@@ -17,7 +17,8 @@ def home(request, format=None):
 # using generics viewset
 class BlogList(generics.ListCreateAPIView):
     queryset = BlogDb.objects.all()
-    serializer = BlogDbSerializer()
-    # return Response(serializer.data)
+    serializer_class = BlogDbSerializer
 
-    # function to list blog entries
+    # when creating a Blog instance, get the author username
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
